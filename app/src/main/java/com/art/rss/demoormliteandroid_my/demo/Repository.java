@@ -11,13 +11,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DemoRepository {
+public class Repository {
 	private final static String LOG_TAG = "DemoRepository";
 
 	private Dao<App, Integer> appDao;
 	private Dao<Person, Integer> personDao;
 
-	public DemoRepository(final DatabaseHelper databaseHelper) {
+	public Repository(final DatabaseHelper databaseHelper) {
 		this.personDao = getPersonDao(databaseHelper);
 		this.appDao = getAppDao(databaseHelper);
 	}

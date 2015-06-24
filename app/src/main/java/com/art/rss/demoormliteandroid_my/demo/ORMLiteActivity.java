@@ -22,11 +22,11 @@ import com.j256.ormlite.dao.ForeignCollection;
 
 import java.util.List;
 
-public class DemoORMLiteActivity extends OrmLiteBaseListActivity<DatabaseHelper> {
+public class ORMLiteActivity extends OrmLiteBaseListActivity<DatabaseHelper> {
 
 	private ListView listView;
 	private PersonAdaptor listAdapter;
-	private DemoRepository demoRepository;
+	private Repository repository;
 
 	private List<Person> persons;
 
@@ -35,14 +35,14 @@ public class DemoORMLiteActivity extends OrmLiteBaseListActivity<DatabaseHelper>
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		this.demoRepository = new DemoRepository(getHelper());
+		this.repository = new Repository(getHelper());
 
 		// Simply clear down all test data on every run
-		this.demoRepository.clearData();
+		this.repository.clearData();
 
-		createFakeEntries();
+		createFakeEntries();										 // add test Persons
 
-		this.persons = this.demoRepository.getPersons();
+		this.persons = this.repository.getPersons();
 
 		findAndCreateAllViews();
 
@@ -51,14 +51,14 @@ public class DemoORMLiteActivity extends OrmLiteBaseListActivity<DatabaseHelper>
 		this.listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long duration) {
-				final Person person = DemoORMLiteActivity.this.listAdapter.getItem(position);
+				final Person person = ORMLiteActivity.this.listAdapter.getItem(position);
 				final ForeignCollection<App> apps = person.getApps();
 				final StringBuilder appList = new StringBuilder();
 				for (final App app : apps) {
 					appList.append(app.getName())
 						.append("\n");
 				}
-				new AlertDialog.Builder(DemoORMLiteActivity.this).setTitle(
+				new AlertDialog.Builder(ORMLiteActivity.this).setTitle(
 						String.format("%s has a total of %s Apps", person.getName(), apps.size()))
 					.setMessage(appList.toString())
 					.show();
@@ -106,8 +106,8 @@ public class DemoORMLiteActivity extends OrmLiteBaseListActivity<DatabaseHelper>
 							app.setPerson(person);
 							app.setName(editText.getText()
 								.toString());
-							DemoORMLiteActivity.this.demoRepository.saveOrUpdateApp(app);
-							DemoORMLiteActivity.this.listAdapter.notifyDataSetChanged();
+							ORMLiteActivity.this.repository.saveOrUpdateApp(app);
+							ORMLiteActivity.this.listAdapter.notifyDataSetChanged();
 						}
 					})
 					.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -120,7 +120,7 @@ public class DemoORMLiteActivity extends OrmLiteBaseListActivity<DatabaseHelper>
 				break;
 			case MENU_DELETE_PERSON:
 				this.persons.remove(info.position);
-				this.demoRepository.deletePerson(person);
+				this.repository.deletePerson(person);
 				this.listAdapter.notifyDataSetChanged();
 				break;
 			case MENU_EDIT_PERSON:
@@ -134,8 +134,8 @@ public class DemoORMLiteActivity extends OrmLiteBaseListActivity<DatabaseHelper>
 						public void onClick(final DialogInterface dialog, final int whichButton) {
 							person.setName(editText.getText()
 								.toString());
-							DemoORMLiteActivity.this.demoRepository.saveOrUpdatePerson(person);
-							DemoORMLiteActivity.this.listAdapter.notifyDataSetChanged();
+							ORMLiteActivity.this.repository.saveOrUpdatePerson(person);
+							ORMLiteActivity.this.listAdapter.notifyDataSetChanged();
 						}
 					})
 					.show();
@@ -150,22 +150,22 @@ public class DemoORMLiteActivity extends OrmLiteBaseListActivity<DatabaseHelper>
 		// Create Two test Persons
 		final Person person = new Person();
 		person.setName("James");
-		this.demoRepository.saveOrUpdatePerson(person);
+		this.repository.saveOrUpdatePerson(person);
 
 		final Person person2 = new Person();
 		person2.setName("Jimmy");
-		this.demoRepository.saveOrUpdatePerson(person2);
+		this.repository.saveOrUpdatePerson(person2);
 
 		// Create two test apps
 		final App app = new App();
 		app.setName("Whos Making The Brew");
 		app.setPerson(person);
-		this.demoRepository.saveOrUpdateApp(app);
+		this.repository.saveOrUpdateApp(app);
 
 		final App app2 = new App();
 		app2.setName("Whos Making The Brew");
 		app2.setPerson(person2);
-		this.demoRepository.saveOrUpdateApp(app2);
+		this.repository.saveOrUpdateApp(app2);
 	}
 
 	public void findAndCreateAllViews() {

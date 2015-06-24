@@ -1,6 +1,5 @@
 package com.art.rss.demoormliteandroid_my.demo;
 
-
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
