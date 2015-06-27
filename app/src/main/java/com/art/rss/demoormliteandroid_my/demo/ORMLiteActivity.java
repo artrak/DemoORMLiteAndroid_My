@@ -17,6 +17,7 @@ import android.widget.ListView;
 import com.art.rss.demoormliteandroid_my.R;
 import com.art.rss.demoormliteandroid_my.demo.entity.Category_entity;
 import com.art.rss.demoormliteandroid_my.demo.entity.Module_entity;
+import com.art.rss.demoormliteandroid_my.demo.entity.Source_entity;
 import com.j256.ormlite.android.apptools.OrmLiteBaseListActivity;
 import com.j256.ormlite.dao.ForeignCollection;
 
@@ -172,15 +173,15 @@ public class ORMLiteActivity extends OrmLiteBaseListActivity<DatabaseHelper> {
 		category3.setModule(module2);
 		this.repository.saveOrUpdateCategory(category3);
 
-//		// Create two test srcs
-//		final Source_entity sourceEntity = new Source_entity();
-//		sourceEntity.setName("sourceName");
-//		sourceEntity.setUrl("www.android.com");
-//		sourceEntity.setXml("http://");
-//		sourceEntity.setTitle("NewsMy");
-//		sourceEntity.setDescription("Description");
-//		sourceEntity.setCategory(category);
-//		this.repository.saveOrUpdateSourse(sourceEntity);
+		// Create two test srcs
+		final Source_entity sourceEntity = new Source_entity();
+		sourceEntity.setName("sourceName");
+		sourceEntity.setUrl("www.android.com");
+		sourceEntity.setXml("http://");
+		sourceEntity.setTitle("NewsMy");
+		sourceEntity.setDescription("Description");
+		sourceEntity.setCategory(category);
+		this.repository.saveOrUpdateSourse(sourceEntity);
 	}
 
 	public void findAndCreateAllViews() {

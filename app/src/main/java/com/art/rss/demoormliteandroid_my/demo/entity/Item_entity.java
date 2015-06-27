@@ -24,7 +24,7 @@ public class Item_entity {
     private String image;
 
     @DatabaseField(canBeNull = true)
-    private ContactsContract.Data datetime;
+    private String datetime;
 
     @DatabaseField(canBeNull = true)
     private String text;
@@ -38,7 +38,7 @@ public class Item_entity {
         // all persisted classes must define a no-arg constructor with at least package visibility
     }
 
-    public Item_entity(final String name, final String link, final String description, final String image, final ContactsContract.Data datetime, final String text, final Source_entity source) {
+    public Item_entity(final String name, final String link, final String description, final String image, final String datetime, final String text, final Source_entity source) {
         this.name = name;
         this.link = link;
         this.description = description;
@@ -88,11 +88,11 @@ public class Item_entity {
         this.image = image;
     }
 
-    public ContactsContract.Data getDatetime() {
+    public String getDatetime() {
         return this.datetime;
     }
 
-    public void setDatetime(final ContactsContract.Data datetime) {
+    public void setDatetime(final String datetime) {
         this.datetime = datetime;
     }
 
