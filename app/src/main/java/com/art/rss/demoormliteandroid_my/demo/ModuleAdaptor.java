@@ -10,21 +10,21 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.art.rss.demoormliteandroid_my.R;
-import com.art.rss.demoormliteandroid_my.demo.domain.Person;
+import com.art.rss.demoormliteandroid_my.demo.entity.Module_entity;
 
 import java.util.List;
 
-public class PersonAdaptor extends ArrayAdapter<Person> {
+public class ModuleAdaptor extends ArrayAdapter<Module_entity> {
 
 	private final String LOG_TAG = "PersonAdapter";
 
-	private List<Person> persons = null;
+	private List<Module_entity> modules = null;
 	private Activity context = null;
 
-	public PersonAdaptor(final Activity context, final int textViewResourceId, final List<Person> persons) {
-		super(context, textViewResourceId, persons);
+	public ModuleAdaptor(final Activity context, final int textViewResourceId, final List<Module_entity> modules) {
+		super(context, textViewResourceId, modules);
 		this.context = context;
-		this.persons = persons;
+		this.modules = modules;
 	}
 
 	@Override
@@ -44,16 +44,16 @@ public class PersonAdaptor extends ArrayAdapter<Person> {
 			holder = (ViewHolder) view.getTag();
 		}
 
-		final Person person = this.persons.get(position);
-		Log.d(this.LOG_TAG, person.getName());
+		final Module_entity module = this.modules.get(position);
+		Log.d(this.LOG_TAG, module.getName());
 
-		if (person != null) {
+		if (module != null) {
 			final TextView name = (TextView) view.findViewById(R.id.name);
-			name.setText(person.getName());
+			name.setText(module.getName());
 
 			final TextView numOfApps = (TextView) view.findViewById(R.id.number_of_apps);
-			numOfApps.setText(Integer.toString(person.getApps()
-				.size()));
+			numOfApps.setText(Integer.toString(module.getCategories()
+					.size()));
 		}
 
 		return view;

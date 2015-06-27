@@ -4,8 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.art.rss.demoormliteandroid_my.demo.domain.App;
-import com.art.rss.demoormliteandroid_my.demo.domain.Person;
+import com.art.rss.demoormliteandroid_my.demo.entity.Category_entity;
+import com.art.rss.demoormliteandroid_my.demo.entity.Item_entity;
+import com.art.rss.demoormliteandroid_my.demo.entity.Module_entity;
+import com.art.rss.demoormliteandroid_my.demo.entity.Source_entity;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
@@ -25,15 +27,19 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	}
 
 	// the DAO object we use to access the SimpleData table
-	private Dao<App, Integer> appDao = null;
-	private Dao<Person, Integer> personDao = null;
+	private Dao<Module_entity, Integer> moduleDao = null;
+	private Dao<Category_entity, Integer> categDao = null;
+	private Dao<Source_entity, Integer> srcDao = null;
+	private Dao<Item_entity, Integer> itemDao = null;
 
 	@Override
 	public void onCreate(final SQLiteDatabase db, final ConnectionSource connectionSource) {
 		try {
 			Log.i(DatabaseHelper.class.getName(), "onCreate");
-			TableUtils.createTable(connectionSource, App.class);
-			TableUtils.createTable(connectionSource, Person.class);
+			TableUtils.createTable(connectionSource, Category_entity.class);
+			TableUtils.createTable(connectionSource, Module_entity.class);
+			TableUtils.createTable(connectionSource, Source_entity.class);
+			TableUtils.createTable(connectionSource, Item_entity.class);
 		}
 		catch (final SQLException e) {
 			Log.e(DatabaseHelper.class.getName(), "Can't create database", e);
@@ -49,8 +55,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	public void onUpgrade(final SQLiteDatabase db, final ConnectionSource connectionSource, final int oldVersion, final int newVersion) {
 		try {
 			Log.i(DatabaseHelper.class.getName(), "onUpgrade");
-			TableUtils.dropTable(connectionSource, App.class, true);
-			TableUtils.dropTable(connectionSource, Person.class, true);
+			TableUtils.dropTable(connectionSource, Category_entity.class, true);
+			TableUtils.dropTable(connectionSource, Module_entity.class, true);
+			TableUtils.dropTable(connectionSource, Source_entity.class, true);
+			TableUtils.dropTable(connectionSource, Item_entity.class, true);
 			// after we drop the old databases, we create the new ones
 			onCreate(db, connectionSource);
 		}
@@ -60,18 +68,34 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		}
 	}
 
-	public Dao<App, Integer> getAppDao() throws SQLException {
-		if (this.appDao == null) {
-			this.appDao = getDao(App.class);
+
+
+	public Dao<Module_entity, Integer> getModuleDao() throws SQLException {
+		if (this.moduleDao == null) {
+			this.moduleDao = getDao(Module_entity.class);
 		}
-		return this.appDao;
+		return this.moduleDao;
 	}
 
-	public Dao<Person, Integer> getPersonDao() throws SQLException {
-		if (this.personDao == null) {
-			this.personDao = getDao(Person.class);
+	public Dao<Category_entity, Integer> getCategoryDao() throws SQLException {
+		if (this.categDao == null) {
+			this.categDao = getDao(Category_entity.class);
 		}
-		return this.personDao;
+		return this.categDao;
+	}
+
+	public Dao<Source_entity, Integer> getSourceDao() throws SQLException {
+		if (this.srcDao == null) {
+			this.srcDao = getDao(Source_entity.class);
+		}
+		return this.srcDao;
+	}
+
+	public Dao<Item_entity, Integer> getItemDao() throws SQLException {
+		if (this.itemDao == null) {
+			this.itemDao = getDao(Item_entity.class);
+		}
+		return this.itemDao;
 	}
 
 	/**
@@ -80,8 +104,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	@Override
 	public void close() {
 		super.close();
-		this.personDao = null;
-		this.appDao = null;
+		this.categDao = null;
+		this.moduleDao = null;
+		this.srcDao = null;
+		this.itemDao = null;
 	}
 
 }
