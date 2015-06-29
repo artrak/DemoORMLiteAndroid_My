@@ -1,6 +1,4 @@
-package com.art.rss.demoormliteandroid_my.demo.entity;
-
-import android.provider.ContactsContract;
+package com.art.rss.demoormliteandroid_my.SQLite_ORM.entity;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;

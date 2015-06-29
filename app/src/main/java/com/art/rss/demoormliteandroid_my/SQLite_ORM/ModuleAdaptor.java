@@ -1,4 +1,4 @@
-package com.art.rss.demoormliteandroid_my.demo;
+package com.art.rss.demoormliteandroid_my.SQLite_ORM;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.art.rss.demoormliteandroid_my.R;
-import com.art.rss.demoormliteandroid_my.demo.entity.Module_entity;
+import com.art.rss.demoormliteandroid_my.SQLite_ORM.entity.Module_entity;
 
 import java.util.List;
 

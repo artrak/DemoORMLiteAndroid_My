@@ -1,11 +1,11 @@
-package com.art.rss.demoormliteandroid_my.demo;
+package com.art.rss.demoormliteandroid_my.SQLite_ORM;
 
 import android.util.Log;
 
-import com.art.rss.demoormliteandroid_my.demo.entity.Category_entity;
-import com.art.rss.demoormliteandroid_my.demo.entity.Item_entity;
-import com.art.rss.demoormliteandroid_my.demo.entity.Module_entity;
-import com.art.rss.demoormliteandroid_my.demo.entity.Source_entity;
+import com.art.rss.demoormliteandroid_my.SQLite_ORM.entity.Category_entity;
+import com.art.rss.demoormliteandroid_my.SQLite_ORM.entity.Item_entity;
+import com.art.rss.demoormliteandroid_my.SQLite_ORM.entity.Module_entity;
+import com.art.rss.demoormliteandroid_my.SQLite_ORM.entity.Source_entity;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.ForeignCollection;
 

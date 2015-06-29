@@ -1,4 +1,4 @@
-package com.art.rss.demoormliteandroid_my.demo;
+package com.art.rss.demoormliteandroid_my.SQLite_ORM;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -15,9 +15,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.art.rss.demoormliteandroid_my.R;
-import com.art.rss.demoormliteandroid_my.demo.entity.Category_entity;
-import com.art.rss.demoormliteandroid_my.demo.entity.Module_entity;
-import com.art.rss.demoormliteandroid_my.demo.entity.Source_entity;
+import com.art.rss.demoormliteandroid_my.SQLite_ORM.entity.Category_entity;
+import com.art.rss.demoormliteandroid_my.SQLite_ORM.entity.Module_entity;
+import com.art.rss.demoormliteandroid_my.SQLite_ORM.entity.Source_entity;
 import com.j256.ormlite.android.apptools.OrmLiteBaseListActivity;
 import com.j256.ormlite.dao.ForeignCollection;
 
@@ -41,7 +41,7 @@ public class ORMLiteActivity extends OrmLiteBaseListActivity<DatabaseHelper> {
 		// Simply clear down all test data on every run
 		this.repository.clearData();
 
-		createFakeEntries();										 // add test Persons
+		createFakeEntriesTEST();										 // add test Persons
 
 		this.modules = this.repository.getModules();
 
@@ -147,7 +147,8 @@ public class ORMLiteActivity extends OrmLiteBaseListActivity<DatabaseHelper> {
 		return true;
 	}
 
-	private void createFakeEntries() {
+	//--------------------------------------------test-----------------------------
+	private void createFakeEntriesTEST() {
 		// Create Two test Module
 		final Module_entity module = new Module_entity();
 		module.setName("James");
@@ -183,6 +184,7 @@ public class ORMLiteActivity extends OrmLiteBaseListActivity<DatabaseHelper> {
 		sourceEntity.setCategory(category);
 		this.repository.saveOrUpdateSourse(sourceEntity);
 	}
+	//--------------------------------------------test-----------------------------
 
 	public void findAndCreateAllViews() {
 		this.listView = getListView();

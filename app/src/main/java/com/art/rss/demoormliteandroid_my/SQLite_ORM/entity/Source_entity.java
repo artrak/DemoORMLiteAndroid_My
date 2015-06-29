@@ -1,4 +1,4 @@
-package com.art.rss.demoormliteandroid_my.demo.entity;
+package com.art.rss.demoormliteandroid_my.SQLite_ORM.entity;
 
 import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
